@@ -1,8 +1,8 @@
 requests
 lxml
 mysqlclient
-git+https://github.com/zhouxianggen/pyobject.git
-git+https://github.com/zhouxianggen/pyutil.git
-git+https://github.com/zhouxianggen/pymysql.git
-git+https://github.com/zhouxianggen/browser_agency.git
-git+https://github.com/zhouxianggen/pyrabbitmq.git
+git+https://github.com/happynewday/pyobject.git
+git+https://github.com/happynewday/pyutil.git
+git+https://github.com/happynewday/pymysql.git
+git+https://github.com/happynewday/browser_agency.git
+git+https://github.com/happynewday/pyrabbitmq.git

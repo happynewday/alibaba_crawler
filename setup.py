@@ -11,7 +11,7 @@ setup(
         version = '1.0',
         install_requires = ['requests', 'lxml', 'mysqlclient'], 
         description = 'alibaba crawler',
-        url = 'https://github.com/zhouxianggen/alibaba_crawler.git', 
+        url = 'https://github.com/happynewday/alibaba_crawler.git', 
         author = 'zhouxianggen',
         author_email = 'zhouxianggen@gmail.com',
         classifiers = [ 'Programming Language :: Python :: 3.7',],

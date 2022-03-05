@@ -7,7 +7,6 @@ import random
 import pymysql
 import requests
 from lxml import html
-import re
 from pybase import BaseObject
 import config
 

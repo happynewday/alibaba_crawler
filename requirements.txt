@@ -4,5 +4,5 @@ mysqlclient
 git+https://github.com/happynewday/pyobject.git
 git+https://github.com/happynewday/pyutil.git
 git+https://github.com/happynewday/pymysql.git
-git+https://github.com/happynewday/browser_agency.git
+#git+https://github.com/happynewday/browser_agency.git
 git+https://github.com/happynewday/pyrabbitmq.git

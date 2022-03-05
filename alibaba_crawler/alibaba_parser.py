@@ -3,7 +3,7 @@ import re
 import json
 from lxml import html
 from lxml import etree
-from html.parser import HTMLParser
+from HTMLParser import HTMLParser
 from pyobject import PyObject
 
 

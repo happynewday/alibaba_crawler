@@ -36,14 +36,12 @@ class K3ShoesListClawler(BaseObject):
             time.sleep(0.2)
 
     def process_one_page(self, url):
-        cookie_str = 'UM_distinctid=17eddf2437f110-01b3bd3a28c42b-f791539-154ac4-17eddf2438065c; __51vcke__JH8oID4DYgzN67sY=b7465b70-d5fa-532b-8b69-9569dbcea25d; __51vuft__JH8oID4DYgzN67sY=1644401149573; _ati=2800730497315; __51uvsct__JH8oID4DYgzN67sY=9; login_captcha_word=02d34849bb1148a1deb070b3aa297ee9; login_captcha_time=1645446180779; login_captcha_image=%3Cimg+id%3D%22captcha%22+src%3D%22%2Fimages%2Fcaptcha%2F1645446180779.png%22+width%3D%2280%22+height%3D%2230%22+style%3D%22border%3A0%3B%22+%2F%3E; login_captcha_hash=cec5cc32aadb5348483371e3b0d8e492; daily_login=1; user_user_id=3227710; user_login_time=2022-02-21+20%3A23%3A20; user_login_ip=94.177.118.48; user_username=17376543972%40k3.cn; user_type=0; user_is_user_login=1; user_login_type=passport; user_hash=fed31865cae4ed10104c5e74f3cc83e3; k3cn=dXNlcl9pZD0zMjI3NzEwJnR5cGU9MCZ1c2VybmFtZT0xNzM3NjU0Mzk3MkBrMy5jbiZ0PTE2NDU0NDYyMDAmaGFzaD1kMmNjYTRkMDYzYzljMzU1ODMwMDIxMmQ2NTQ0YmYyMg%3D%3D; CNZZDATA1278071117=910611069-1644399317-null%7C1645438122; __vtins__JH8oID4DYgzN67sY=%7B%22sid%22%3A%20%222c7fcbc6-a316-569f-9d46-0e3e7c550da6%22%2C%20%22vd%22%3A%208%2C%20%22stt%22%3A%201794010%2C%20%22dr%22%3A%201307976%2C%20%22expires%22%3A%201645449328117%2C%20%22ct%22%3A%201645447528117%7D; acw_tc=2f624a0d16454488545613882e257acc3d11c6d3bfeb78d19b9a90ec815114'
+        cookie_str = 'UM_distinctid=17eddf2437f110-01b3bd3a28c42b-f791539-154ac4-17eddf2438065c; __51vcke__JH8oID4DYgzN67sY=b7465b70-d5fa-532b-8b69-9569dbcea25d; __51vuft__JH8oID4DYgzN67sY=1644401149573; _ati=2800730497315; k3cn=dXNlcl9pZD0zMjI3NzEwJnR5cGU9MCZ1c2VybmFtZT0xNzM3NjU0Mzk3MkBrMy5jbiZ0PTE2NDQ0MDEzNDcmaGFzaD01NDA0NTg2NmVjNzZlY2I1NTJkYjc5NzRhZjJiZDVhMw%3D%3D; acw_tc=2f624a2416453378873893004e7ef9ad7b218c48f7c4895b6653cb5b0ff3fc; CNZZDATA1278071117=910611069-1644399317-null%7C1645330073; __51uvsct__JH8oID4DYgzN67sY=3; __vtins__JH8oID4DYgzN67sY=%7B%22sid%22%3A%20%2288c2ca56-96cd-513d-ba9a-42ee702d46d8%22%2C%20%22vd%22%3A%208%2C%20%22stt%22%3A%20536189%2C%20%22dr%22%3A%205866%2C%20%22expires%22%3A%201645340224856%2C%20%22ct%22%3A%201645338424856%7D'
 
-        cookies = []
+        cookies = {}
         for line in cookie_str.split(';'):
             name, value = line.strip().split('=', 1)
-            cookie = {}
-            cookie[name] = value
-            cookies.append(cookie)
+            cookies[name] = value
 
         print json.dumps(cookies)
         send_headers = {

@@ -17,7 +17,8 @@ class K3ShopClawler(BaseObject):
     def run(self):
         for page in range(1,31):
             sellers = self.process_one_page(page)
-            if len(sellers) <= 0:
+            time.sleep(10)
+            if None == sellers or len(sellers) <= 0:
                 continue
 
             self.log.info('页码:{}, 得到 [{}] 个卖家'.format(page, len(sellers)))

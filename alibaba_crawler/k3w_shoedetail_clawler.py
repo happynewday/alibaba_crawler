@@ -10,7 +10,6 @@ from lxml import html
 import re
 from pybase import BaseObject
 import config
-from render import Render
 
 class K3ShoesDetailClawler(BaseObject):
     def __init__(self):
@@ -23,14 +22,21 @@ class K3ShoesDetailClawler(BaseObject):
         number = 0
         while True:
             updates = []
-            sql = 'select * from k3w_product where title is null order by id limit 10'.format(start)
+            sql = 'select * from k3w_product where title is null and status=0 order by id limit 100'
             fetch_number = self.cursor.execute(sql)
             if fetch_number <= 0:
                 break
 
             for product in self.cursor.fetchall():
-                start = product['id']
-                detail = self.process_one_product(product['url'])
+                try:
+                    start = product['id']
+                    detail = self.process_one_product(product['url'])
+                except Exception as e:
+                    self.log.exception(e)
+                    update_sql = 'UPDATE k3w_product set status=1 where id={}'.format(product['id'])
+                    self.cursor.execute(update_sql)
+                    self.db.commit()
+
                 time.sleep(10)
                 if detail is None or len(detail) <= 0:
                     continue
@@ -65,17 +71,17 @@ class K3ShoesDetailClawler(BaseObject):
         r = requests.get(url, cookies=cookies, headers=send_headers)
         if r.status_code != 200:
             self.log.error('request failed')
-            return None
+            raise Exception("request failed", r.status_code)
         return self.parse_shoes_detail(r.content)
 
 
 
-    def process_one_product_new(self, url):
-        r = Render(url)
-        result = r.frame.toHtml()
-        formatted_result = str(result.toAscii())
-        tree = html.fromstring(formatted_result)
-        print tree
+    # def process_one_product_new(self, url):
+    #     r = Render(url)
+    #     result = r.frame.toHtml()
+    #     formatted_result = str(result.toAscii())
+    #     tree = html.fromstring(formatted_result)
+    #     print tree
 
 
     def parse_shoes_detail(self, content):
@@ -137,7 +143,7 @@ class K3ShoesDetailClawler(BaseObject):
             return detail
         except Exception as e:
             self.log.exception(e)
-            return None
+            raise e
 
 def main(args=None):
     k = K3ShoesDetailClawler()

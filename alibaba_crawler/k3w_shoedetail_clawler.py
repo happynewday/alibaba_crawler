@@ -27,6 +27,7 @@ class K3ShoesDetailClawler(BaseObject):
                 break
 
             for product in self.cursor.fetchall():
+                detail = None
                 try:
                     start = product['id']
                     detail = self.process_one_product(product['url'])
